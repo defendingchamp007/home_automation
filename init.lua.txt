@@ -1,0 +1,15 @@
+Relay1 = 1
+Relay2 = 4
+Rst1 = 5
+gpio.mode(Rst1, gpio.INPUT);
+gpio.mode(Relay1, gpio.OUTPUT)
+gpio.write(Relay1, gpio.LOW);
+gpio.mode(Relay2, gpio.OUTPUT)
+gpio.write(Relay2, gpio.HIGH);
+if(gpio.read(Rst1) == 0)then
+  print("Configuration mode")
+  dofile("conf.lua");
+else
+  print("Server mode")
+  dofile("server.lua");
+end
